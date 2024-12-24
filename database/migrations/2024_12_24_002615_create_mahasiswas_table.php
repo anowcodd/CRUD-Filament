@@ -1,0 +1,37 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('mahasiswas', function (Blueprint $table) {
+            $table->id();
+            $table->string('nim', 13)->unique();
+            $table->string('nama', 128);
+            $table->enum('jenis_kelamin', ['L', 'P']);
+            $table->string('alamat', 128);
+            $table->date('tanggal_lahir');
+            $table->enum('jurusan', ['TI', 'SI', 'ILKOM']);
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::dropIfExists('mahasiswas');
+    }
+};
